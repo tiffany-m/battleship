@@ -1,7 +1,5 @@
-# NOTE:  can ref https://github.com/eascodes/newprojectguide?tab=readme-ov-file
-
 # Title
-Quick Description
+Battleship Project
 
 ## Directions
 - "npm install" to install dependences in package.json
@@ -10,6 +8,7 @@ Quick Description
   -  npx webpack –-watch (continuously update, ctrl + c to stop)
   -  npm run build 
   -  npm test (runs jest tests)
+
 ## Build Status
 
 ## Tech/Framework
@@ -17,9 +16,13 @@ Quick Description
 - CSS
 - JavaScript
 - Webpack
+- Jest (for testing)
 
 ## API Used
+N/A
 
 ## Known Bugs
+N/A
 
 ## Motivation
+Practice Test Driven Development, Algorithms and Complicated Data Structures
