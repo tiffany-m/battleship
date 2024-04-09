@@ -2,7 +2,7 @@ import { Ship } from "../components/ship.js";
 
 describe("Ship", () => {
   test("Carrier test", () => {
-    let carrier = new Ship("carrier", 5, 0);
+    let carrier = new Ship("carrier", 5);
     expect(carrier.name).toBe("carrier");
     expect(carrier.length).toBe(5);
     expect(carrier.numHit).toBe(0);
@@ -18,7 +18,7 @@ describe("Ship", () => {
 
 describe("Ship", () => {
   test("battleship test", () => {
-    let battleship = new Ship("battleship", 4, 0);
+    let battleship = new Ship("battleship", 4);
     expect(battleship.name).toBe("battleship");
     expect(battleship.length).toBe(4);
     expect(battleship.numHit).toBe(0);
@@ -33,7 +33,7 @@ describe("Ship", () => {
 
 describe("Ship", () => {
   test("Cruiser test", () => {
-    let cruiser = new Ship("cruiser", 3, 0);
+    let cruiser = new Ship("cruiser", 3);
     expect(cruiser.name).toBe("cruiser");
     expect(cruiser.length).toBe(3);
     expect(cruiser.numHit).toBe(0);
@@ -47,7 +47,7 @@ describe("Ship", () => {
 
 describe("Ship", () => {
   test("Submarine test", () => {
-    let submarine = new Ship("submarine", 3, 0);
+    let submarine = new Ship("submarine", 3);
     expect(submarine.name).toBe("submarine");
     expect(submarine.length).toBe(3);
     expect(submarine.numHit).toBe(0);
@@ -61,7 +61,7 @@ describe("Ship", () => {
 
 describe("Ship", () => {
   test("Patrol Boat test", () => {
-    let patrolBoat = new Ship("patrolBoat", 2, 0);
+    let patrolBoat = new Ship("patrolBoat", 2);
     expect(patrolBoat.name).toBe("patrolBoat");
     expect(patrolBoat.length).toBe(2);
     expect(patrolBoat.numHit).toBe(0);
