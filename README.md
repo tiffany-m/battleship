@@ -7,7 +7,7 @@ Battleship Project
 - "npm install" to install dependences in package.json
 - Commands to run
 - npx webpack
-- npx webpack –-watch (continuously update, ctrl + c to stop)
+- npm run watch (continuously update, ctrl + c to stop)
 - npm run build
 - npm test (runs jest tests)
 
