@@ -77,8 +77,8 @@ describe("Ship Creation", () => {
   });
 });
 
-describe("Overhitting Ship", () => {
-  test.only("Overhitting Test", () => {
+describe("Overhitting Ship Should Not Be Possible", () => {
+  test("Overhitting Test", () => {
     let patrolBoat = new Ship("Patrol Boat", 2);
     expect(patrolBoat.name).toBe("Patrol Boat");
     expect(patrolBoat.length).toBe(2);
