@@ -46,7 +46,7 @@ class GameBoard {
         if (this.board[row][col + i].empty === false) {
           return {
             success: false,
-            message: `Cannot place ${ship.name}: space already occupied by ${this.board[row][col + i].ship}.`,
+            message: `Cannot place ${ship.name}: space already occupied by ${this.board[row][col + i].ship.name}.`,
           };
         }
       }
@@ -55,7 +55,7 @@ class GameBoard {
         if (this.board[row + i][col].empty === false) {
           return {
             success: false,
-            message: `Cannot place ${ship.name}: space already occupied by ${this.board[row + i][col].ship}.`,
+            message: `Cannot place ${ship.name}: space already occupied by ${this.board[row + i][col].ship.name}.`,
           };
         }
       }
@@ -64,14 +64,27 @@ class GameBoard {
     for (let i = 0; i < ship.length; i++) {
       if (orientation === "horizontal") {
         this.board[row][col + i].empty = false;
-        this.board[row][col + i].ship = `${ship.name}`;
+        this.board[row][col + i].ship = ship;
       } else {
         this.board[row + i][col].empty = false;
-        this.board[row + i][col].ship = `${ship.name}`;
+        this.board[row + i][col].ship = ship;
       }
     }
     return true;
   }
+
+  receiveAttack(row, col) {
+    let cell = this.board[row][col]; 
+    if(cell.ship != null) {
+      cell.hit = true
+      cell.ship.hit()
+      cell.ship.isSunk()
+      return cell.hit
+    } else {
+      cell.miss = true
+      return cell.miss
+    }
+  }
 }
 
-export { GameBoard };
+export { GameBoard }
