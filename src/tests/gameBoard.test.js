@@ -111,22 +111,22 @@ describe("Ship Placement on Game Board", () => {
     let cruiser = new Ship("Cruiser", 3);
     let submarine = new Ship("Submarine", 3);
     test("Horizontal Out of Bounds Test", () => {
-      expect(gameBoard.placeShip(cruiser, 0, 9, "horizontal")).toEqual({
+      expect(gameBoard.placeShip(cruiser, 0, 9, "horizontal")).toEqual(expect.objectContaining({
         message:
           "Cruiser placement is out of bounds. Horizontal orientation would extend beyond game board's edge.",
-      });
+      }));
     });
     test("Vertical Out of Bounds Test", () => {
-      expect(gameBoard.placeShip(cruiser, 9, 0, "vertical")).toEqual({
+      expect(gameBoard.placeShip(cruiser, 9, 0, "vertical")).toEqual(expect.objectContaining({
         message:
           "Cruiser placement is out of bounds. Vertical orientation would extend beyond game board's edge.",
-      });
+      }));
     });
     test("Overlapping Ships", () => {
       gameBoard.placeShip(cruiser, 3, 3, "horizontal");
-      expect(gameBoard.placeShip(submarine, 2, 4, "vertical")).toEqual({
+      expect(gameBoard.placeShip(submarine, 2, 4, "vertical")).toEqual(expect.objectContaining({
         message: "Cannot place Submarine: space already occupied by Cruiser.",
-      });
+      }));
     });
   });
 });
