@@ -7,6 +7,12 @@ class Ship {
   }
 
   hit() {
+    if(this.numHit === this.length) {
+      return {
+        message: `${this.name} has been hit the max number of times already and has sunk.`,
+      };
+    }
+
     if (!this.sunk) {
       this.numHit++;
     }

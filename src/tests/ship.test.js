@@ -1,9 +1,9 @@
 import { Ship } from "../components/ship.js";
 
-describe("Ship", () => {
-  test("Carrier test", () => {
-    let carrier = new Ship("carrier", 5);
-    expect(carrier.name).toBe("carrier");
+describe("Ship Creation", () => {
+  test("Carrier Test", () => {
+    let carrier = new Ship("Carrier", 5);
+    expect(carrier.name).toBe("Carrier");
     expect(carrier.length).toBe(5);
     expect(carrier.numHit).toBe(0);
     expect(carrier.sunk).toBe(false);
@@ -19,12 +19,9 @@ describe("Ship", () => {
     expect(carrier.numHit).toBe(5);
     expect(carrier.isSunk()).toBe(true);
   });
-});
-
-describe("Ship", () => {
-  test("battleship test", () => {
-    let battleship = new Ship("battleship", 4);
-    expect(battleship.name).toBe("battleship");
+  test("Battleship Test", () => {
+    let battleship = new Ship("Battleship", 4);
+    expect(battleship.name).toBe("Battleship");
     expect(battleship.length).toBe(4);
     expect(battleship.numHit).toBe(0);
     expect(battleship.sunk).toBe(false);
@@ -38,12 +35,9 @@ describe("Ship", () => {
     expect(battleship.numHit).toBe(4);
     expect(battleship.isSunk()).toBe(true);
   });
-});
-
-describe("Ship", () => {
-  test("Cruiser test", () => {
-    let cruiser = new Ship("cruiser", 3);
-    expect(cruiser.name).toBe("cruiser");
+  test("Cruiser Test", () => {
+    let cruiser = new Ship("Cruiser", 3);
+    expect(cruiser.name).toBe("Cruiser");
     expect(cruiser.length).toBe(3);
     expect(cruiser.numHit).toBe(0);
     expect(cruiser.sunk).toBe(false);
@@ -55,12 +49,9 @@ describe("Ship", () => {
     expect(cruiser.numHit).toBe(3);
     expect(cruiser.isSunk()).toBe(true);
   });
-});
-
-describe("Ship", () => {
-  test("Submarine test", () => {
-    let submarine = new Ship("submarine", 3);
-    expect(submarine.name).toBe("submarine");
+  test("Submarine Test", () => {
+    let submarine = new Ship("Submarine", 3);
+    expect(submarine.name).toBe("Submarine");
     expect(submarine.length).toBe(3);
     expect(submarine.numHit).toBe(0);
     expect(submarine.sunk).toBe(false);
@@ -72,12 +63,9 @@ describe("Ship", () => {
     expect(submarine.numHit).toBe(3);
     expect(submarine.isSunk()).toBe(true);
   });
-});
-
-describe("Ship", () => {
-  test("Patrol Boat test", () => {
-    let patrolBoat = new Ship("patrolBoat", 2);
-    expect(patrolBoat.name).toBe("patrolBoat");
+  test("Patrol Boat Test", () => {
+    let patrolBoat = new Ship("Patrol Boat", 2);
+    expect(patrolBoat.name).toBe("Patrol Boat");
     expect(patrolBoat.length).toBe(2);
     expect(patrolBoat.numHit).toBe(0);
     expect(patrolBoat.sunk).toBe(false);
@@ -86,5 +74,25 @@ describe("Ship", () => {
     patrolBoat.hit();
     expect(patrolBoat.numHit).toBe(2);
     expect(patrolBoat.isSunk()).toBe(true);
+  });
+});
+
+describe("Overhitting Ship", () => {
+  test.only("Overhitting Test", () => {
+    let patrolBoat = new Ship("Patrol Boat", 2);
+    expect(patrolBoat.name).toBe("Patrol Boat");
+    expect(patrolBoat.length).toBe(2);
+    expect(patrolBoat.numHit).toBe(0);
+    expect(patrolBoat.sunk).toBe(false);
+    patrolBoat.hit();
+    expect(patrolBoat.numHit).toBe(1);
+    patrolBoat.hit();
+    expect(patrolBoat.numHit).toBe(2);
+    expect(patrolBoat.isSunk()).toBe(true);
+    expect(patrolBoat.hit()).toEqual({
+      message:
+        "Patrol Boat has been hit the max number of times already and has sunk.",
+    });
+    expect(patrolBoat.numHit).toBe(2);
   });
 });
