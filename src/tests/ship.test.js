@@ -78,8 +78,9 @@ describe("Ship Creation", () => {
 });
 
 describe("Overhitting Ship Should Not Be Possible", () => {
-  test("Overhitting Test", () => {
-    let patrolBoat = new Ship("Patrol Boat", 2);
+  let patrolBoat;
+  beforeEach(() => {
+    patrolBoat = new Ship("Patrol Boat", 2);
     expect(patrolBoat.name).toBe("Patrol Boat");
     expect(patrolBoat.length).toBe(2);
     expect(patrolBoat.numHit).toBe(0);
@@ -89,10 +90,15 @@ describe("Overhitting Ship Should Not Be Possible", () => {
     patrolBoat.hit();
     expect(patrolBoat.numHit).toBe(2);
     expect(patrolBoat.isSunk()).toBe(true);
+  });
+  test("Overhitting Test", () => {
     expect(patrolBoat.hit()).toEqual({
       message:
         "Patrol Boat has been hit the max number of times already and has sunk.",
     });
     expect(patrolBoat.numHit).toBe(2);
+  });
+  test("Calling isSunk() Multiple Times Test", () => {
+    expect(patrolBoat.isSunk()).toBe(true);
   });
 });
