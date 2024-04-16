@@ -1,4 +1,4 @@
-import { GameBoard } from "../components/gameboard.js";
+import { GameBoard } from "../components/gameBoard.js";
 import { Ship } from "../components/ship.js";
 
 describe("Creating Game Board", () => {
@@ -102,7 +102,7 @@ describe("Ship Placement on Game Board", () => {
         }),
       );
     });
-    });
+  });
 });
 
 describe("Test receiveAttack() for Ship Hit or Miss", () => {
