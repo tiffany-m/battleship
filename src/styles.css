@@ -1,0 +1,21 @@
+#battleship-game-container {
+  display: flex;
+  
+}
+
+#human-game-board, #computer-game-board {
+  border: 2px black solid;
+  display: flex;
+}
+
+.cell {
+  background-color: lightgray;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid white;
+}
+
+.hasShip {
+  background-color: navy;
+  border: 2px solid navy;
+}
