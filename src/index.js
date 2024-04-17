@@ -21,6 +21,7 @@ let humanGameBoard = document.getElementById("human-game-board");
 let computerGameBoard = document.getElementById("computer-game-board");
 let closePopUpBtn = document.getElementById("close-popup-btn");
 let sunkAlert = document.getElementById("sunk-alert");
+let endOfGameAlert = document.getElementById("end-of-game-alert")
 
 // temp placement of ships
 humanPlayer.gameBoardInstance.placeShip(carrierHuman, 1, 1, "horizontal");
@@ -78,11 +79,16 @@ function addListenersToCells(player, board) {
         cell.classList.add("miss");
       }
 
-      console.log(player.gameBoardInstance.board[row][col].ship);
-
       if (boardCell.ship && boardCell.ship.sunk) {
         sunkAlert.classList.replace("hidden", "visible");
+        player.allShipsSunk++;
+        if(player.allShipsSunk === 5) {
+          endOfGameAlert.classList.replace("hidden", "visible");
+          alert(`${player} loses, all ships sunk`)
+        }
       }
+
+      console.log(player);
 
       cell.removeEventListener("click", handleClick); // Remove the listener after the click
     };

@@ -40,7 +40,7 @@
   width: 100%;
 }
 
-#sunk-alert {
+#sunk-alert, #end-of-game {
   position: fixed;
   top: 50%;
   left: 50%;
