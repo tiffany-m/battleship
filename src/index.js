@@ -19,6 +19,8 @@ let patrolBoatComp = new Ship("Patrol Boat", 2);
 // DOM
 let humanGameBoard = document.getElementById("human-game-board");
 let computerGameBoard = document.getElementById("computer-game-board");
+let closePopUpBtn = document.getElementById("close-popup-btn");
+let sunkAlert = document.getElementById("sunk-alert");
 
 // temp placement of ships
 humanPlayer.gameBoardInstance.placeShip(carrierHuman, 1, 1, "horizontal");
@@ -53,5 +55,43 @@ function renderPlayerBoards(player, playerBoard) {
   }
 }
 
+closePopUpBtn.addEventListener("click", () => {
+  sunkAlert.classList.replace("visible", "hidden");
+});
+
+function addListenersToCells(player, board) {
+  const cells = board.querySelectorAll(".cell");
+
+  cells.forEach((cell) => {
+    const handleClick = () => {
+      // Named function for handling the click
+      const row = parseInt(cell.dataset.row);
+      const col = parseInt(cell.dataset.col);
+      const boardCell = player.gameBoardInstance.board[row][col];
+
+      player.gameBoardInstance.receiveAttack(row, col);
+
+      if (boardCell.hit) {
+        cell.innerText = "X";
+        cell.classList.add("hit");
+      } else {
+        cell.classList.add("miss");
+      }
+
+      console.log(player.gameBoardInstance.board[row][col].ship);
+
+      if (boardCell.ship && boardCell.ship.sunk) {
+        sunkAlert.classList.replace("hidden", "visible");
+      }
+
+      cell.removeEventListener("click", handleClick); // Remove the listener after the click
+    };
+
+    cell.addEventListener("click", handleClick);
+  });
+}
+
 renderPlayerBoards(humanPlayer, humanGameBoard);
 renderPlayerBoards(computerPlayer, computerGameBoard);
+addListenersToCells(humanPlayer, humanGameBoard);
+addListenersToCells(computerPlayer, computerGameBoard);
