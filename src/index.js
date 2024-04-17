@@ -32,26 +32,25 @@ computerPlayer.gameBoardInstance.placeShip(cruiserComp, 8, 1, "horizontal");
 computerPlayer.gameBoardInstance.placeShip(submarineComp, 2, 8, "vertical");
 computerPlayer.gameBoardInstance.placeShip(patrolBoatComp, 9, 7, "horizontal");
 
-function renderPlayerBoards(player, board) {
-  player.gameBoardInstance.board.forEach((row) => {
+function renderPlayerBoards(player, playerBoard) {
+  for (let i = 0; i < player.gameBoardInstance.board.length; i++) {
     let rowWrapper = document.createElement("div");
-    let rowNum = 0;
-    let cellNum = 0;
     rowWrapper.classList.add("row");
-    rowNum++;
-    row.forEach((cell) => {
+    for (let j = 0; j < player.gameBoardInstance.board[i].length; j++) {
       let cellElement = document.createElement("div");
       cellElement.classList.add("cell");
-      cellElement.dataset.row = rowNum;
-      cellElement.dataset.column = cellNum;
-      cellNum++;
+      cellElement.dataset.row = i;
+      cellElement.dataset.col = j;
 
-      if (cell.ship) cellElement.classList.add("hasShip");
+      if (player.gameBoardInstance.board[i][j].ship) {
+        cellElement.classList.add("hasShip");
+        cellElement.classList.add("hit");
+      }
 
       rowWrapper.appendChild(cellElement);
-    });
-    board.appendChild(rowWrapper);
-  });
+    }
+    playerBoard.appendChild(rowWrapper);
+  }
 }
 
 renderPlayerBoards(humanPlayer, humanGameBoard);
