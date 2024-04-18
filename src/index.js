@@ -1,5 +1,12 @@
 import { Ship } from "./components/ship.js";
 import { Player } from "./components/player.js";
+import {
+  humanGameBoard,
+  computerGameBoard,
+  closePopUpBtn,
+  sunkAlert,
+  endOfGameAlert,
+} from "./components/dom.js";
 import "./styles.css";
 
 // Human setup
@@ -16,12 +23,6 @@ let battleshipComp = new Ship("Battleship", 4);
 let cruiserComp = new Ship("Cruiser", 3);
 let submarineComp = new Ship("Submarine", 3);
 let patrolBoatComp = new Ship("Patrol Boat", 2);
-// DOM
-let humanGameBoard = document.getElementById("human-game-board");
-let computerGameBoard = document.getElementById("computer-game-board");
-let closePopUpBtn = document.getElementById("close-popup-btn");
-let sunkAlert = document.getElementById("sunk-alert");
-let endOfGameAlert = document.getElementById("end-of-game-alert")
 
 // temp placement of ships
 humanPlayer.gameBoardInstance.placeShip(carrierHuman, 1, 1, "horizontal");
@@ -38,14 +39,14 @@ computerPlayer.gameBoardInstance.placeShip(patrolBoatComp, 9, 7, "horizontal");
 let currentPlayer = humanPlayer;
 
 function nextTurn() {
-  if(currentPlayer === humanPlayer) {
-    currentPlayer = computerPlayer
+  if (currentPlayer === humanPlayer) {
+    currentPlayer = computerPlayer;
     computerGameBoard.classList.add("nextTurn");
-    humanGameBoard.classList.remove("nextTurn")
+    humanGameBoard.classList.remove("nextTurn");
   } else {
-    currentPlayer = humanPlayer
-    humanGameBoard.classList.add("nextTurn")
-    computerGameBoard.classList.remove("nextTurn")
+    currentPlayer = humanPlayer;
+    humanGameBoard.classList.add("nextTurn");
+    computerGameBoard.classList.remove("nextTurn");
   }
 }
 
@@ -60,8 +61,7 @@ function renderPlayerBoards(player, playerBoard) {
       cellElement.dataset.col = j;
 
       if (player.gameBoardInstance.board[i][j].ship) {
-        if (player.isComputer === false)
-        cellElement.classList.add("hasShip");
+        if (player.isComputer === false) cellElement.classList.add("hasShip");
       }
 
       rowWrapper.appendChild(cellElement);
@@ -98,7 +98,7 @@ function handleClick(player) {
         alert(`${player} loses, all ships sunk`);
       }
     }
-    nextTurn()
+    nextTurn();
   };
 }
 
