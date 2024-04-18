@@ -46,8 +46,8 @@ function renderPlayerBoards(player, playerBoard) {
       cellElement.dataset.col = j;
 
       if (player.gameBoardInstance.board[i][j].ship) {
+        if (player.isComputer === false)
         cellElement.classList.add("hasShip");
-        cellElement.classList.add("hit");
       }
 
       rowWrapper.appendChild(cellElement);
