@@ -35,6 +35,20 @@ computerPlayer.gameBoardInstance.placeShip(cruiserComp, 8, 1, "horizontal");
 computerPlayer.gameBoardInstance.placeShip(submarineComp, 2, 8, "vertical");
 computerPlayer.gameBoardInstance.placeShip(patrolBoatComp, 9, 7, "horizontal");
 
+let currentPlayer = humanPlayer;
+
+function nextTurn() {
+  if(currentPlayer === humanPlayer) {
+    currentPlayer = computerPlayer
+    computerGameBoard.classList.add("nextTurn");
+    humanGameBoard.classList.remove("nextTurn")
+  } else {
+    currentPlayer = humanPlayer
+    humanGameBoard.classList.add("nextTurn")
+    computerGameBoard.classList.remove("nextTurn")
+  }
+}
+
 function renderPlayerBoards(player, playerBoard) {
   for (let i = 0; i < player.gameBoardInstance.board.length; i++) {
     let rowWrapper = document.createElement("div");
@@ -84,6 +98,7 @@ function handleClick(player) {
         alert(`${player} loses, all ships sunk`);
       }
     }
+    nextTurn()
   };
 }
 

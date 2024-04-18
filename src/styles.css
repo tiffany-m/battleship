@@ -58,3 +58,7 @@
 .visible {
   display: block;
 }
+
+.nextTurn {
+  pointer-events: none;
+}
