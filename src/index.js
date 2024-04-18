@@ -60,40 +60,39 @@ closePopUpBtn.addEventListener("click", () => {
   sunkAlert.classList.replace("visible", "hidden");
 });
 
+function handleClick(player) {
+  return function (event) {
+    const cell = event.target;
+    const row = parseInt(cell.dataset.row);
+    const col = parseInt(cell.dataset.col);
+    const boardCell = player.gameBoardInstance.board[row][col];
+
+    player.gameBoardInstance.receiveAttack(row, col);
+
+    if (boardCell.hit) {
+      cell.innerText = "X";
+      cell.classList.add("hit");
+    } else {
+      cell.classList.add("miss");
+    }
+
+    if (boardCell.ship && boardCell.ship.sunk) {
+      sunkAlert.classList.replace("hidden", "visible");
+      player.allShipsSunk++;
+      if (player.allShipsSunk === 5) {
+        endOfGameAlert.classList.replace("hidden", "visible");
+        alert(`${player} loses, all ships sunk`);
+      }
+    }
+  };
+}
+
 function addListenersToCells(player, board) {
   const cells = board.querySelectorAll(".cell");
 
   cells.forEach((cell) => {
-    const handleClick = () => {
-      // Named function for handling the click
-      const row = parseInt(cell.dataset.row);
-      const col = parseInt(cell.dataset.col);
-      const boardCell = player.gameBoardInstance.board[row][col];
-
-      player.gameBoardInstance.receiveAttack(row, col);
-
-      if (boardCell.hit) {
-        cell.innerText = "X";
-        cell.classList.add("hit");
-      } else {
-        cell.classList.add("miss");
-      }
-
-      if (boardCell.ship && boardCell.ship.sunk) {
-        sunkAlert.classList.replace("hidden", "visible");
-        player.allShipsSunk++;
-        if(player.allShipsSunk === 5) {
-          endOfGameAlert.classList.replace("hidden", "visible");
-          alert(`${player} loses, all ships sunk`)
-        }
-      }
-
-      console.log(player);
-
-      cell.removeEventListener("click", handleClick); // Remove the listener after the click
-    };
-
-    cell.addEventListener("click", handleClick);
+    const handleEvent = handleClick(player); // Create a new handler for each cell
+    cell.addEventListener("click", handleEvent, { once: true }); // makes cell only clickable once
   });
 }
 
