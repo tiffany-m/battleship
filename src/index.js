@@ -1,5 +1,10 @@
 import { Ship } from "./components/ship.js";
-import { renderPlayerBoards, addListenersToCells, humanPlayer, computerPlayer } from "./components/gameLogic.js";
+import {
+  renderPlayerBoards,
+  addListenersToCells,
+  humanPlayer,
+  computerPlayer,
+} from "./components/gameLogic.js";
 import { humanGameBoard, computerGameBoard } from "./components/dom.js";
 import "./styles.css";
 

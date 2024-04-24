@@ -74,17 +74,17 @@ class GameBoard {
   }
 
   receiveAttack(row, col) {
-    let cell = this.board[row][col]; 
-    if(cell.ship != null) {
-      cell.hit = true
-      cell.ship.hit()
-      cell.ship.isSunk()
-      return cell.hit
+    let cell = this.board[row][col];
+    if (cell.ship != null) {
+      cell.hit = true;
+      cell.ship.hit();
+      cell.ship.isSunk();
+      return cell.hit;
     } else {
-      cell.miss = true
-      return cell.miss
+      cell.miss = true;
+      return cell.miss;
     }
   }
 }
 
-export { GameBoard }
+export { GameBoard };

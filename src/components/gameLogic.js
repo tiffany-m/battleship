@@ -1,4 +1,4 @@
-import { Player } from "./player.js"
+import { Player } from "./player.js";
 import {
   humanGameBoard,
   computerGameBoard,
@@ -8,7 +8,8 @@ import {
 } from "./dom.js";
 let humanPlayer = new Player(false);
 let computerPlayer = new Player(true);
-let currentPlayer = humanPlayer
+let currentPlayer = humanPlayer;
+let computerPicks = [];
 
 function renderPlayerBoards(player, playerBoard) {
   for (let i = 0; i < player.gameBoardInstance.board.length; i++) {
@@ -34,14 +35,55 @@ closePopUpBtn.addEventListener("click", () => {
   sunkAlert.classList.replace("visible", "hidden");
 });
 
+function updateCell(cell, boardCell, player) {
+  if (cell) {
+    if (boardCell.hit) {
+      cell.innerText = "X";
+      cell.classList.add("hit");
+    } else {
+      cell.classList.add("miss");
+    }
+  }
+
+  if (boardCell.ship && boardCell.ship.sunk) {
+    sunkAlert.classList.replace("hidden", "visible");
+    player.allShipsSunk++;
+    if (player.allShipsSunk === 5) {
+      endOfGameAlert.classList.replace("hidden", "visible");
+      alert(`${player.name} loses, all ships sunk`);
+    }
+  }
+}
+
+function handleComputerAttack() {
+  let row = Math.floor(Math.random() * 10);
+  let col = Math.floor(Math.random() * 10);
+  let coordinate = `${row},${col}`;
+
+  while (computerPicks.includes(coordinate)) {
+    row = Math.floor(Math.random() * 10);
+    col = Math.floor(Math.random() * 10);
+    coordinate = `${row},${col}`;
+  }
+
+  const cell = document.querySelector(`[data-row='${row}'][data-col='${col}']`);
+
+  computerPicks.push(coordinate);
+  const boardCell = humanPlayer.gameBoardInstance.board[row][col];
+  humanPlayer.gameBoardInstance.receiveAttack(row, col);
+
+  updateCell(cell, boardCell, humanPlayer)
+  nextTurn();
+}
+
+
 function nextTurn() {
   if (currentPlayer === humanPlayer) {
     currentPlayer = computerPlayer;
     computerGameBoard.classList.add("nextTurn");
-    humanGameBoard.classList.remove("nextTurn");
+    handleComputerAttack();
   } else {
     currentPlayer = humanPlayer;
-    humanGameBoard.classList.add("nextTurn");
     computerGameBoard.classList.remove("nextTurn");
   }
 }
@@ -55,21 +97,7 @@ function handleClick(player) {
 
     player.gameBoardInstance.receiveAttack(row, col);
 
-    if (boardCell.hit) {
-      cell.innerText = "X";
-      cell.classList.add("hit");
-    } else {
-      cell.classList.add("miss");
-    }
-
-    if (boardCell.ship && boardCell.ship.sunk) {
-      sunkAlert.classList.replace("hidden", "visible");
-      player.allShipsSunk++;
-      if (player.allShipsSunk === 5) {
-        endOfGameAlert.classList.replace("hidden", "visible");
-        alert(`${player} loses, all ships sunk`);
-      }
-    }
+    updateCell(cell, boardCell, player)
     nextTurn();
   };
 }
@@ -83,4 +111,10 @@ function addListenersToCells(player, board) {
   });
 }
 
-export { renderPlayerBoards, addListenersToCells, humanPlayer, computerPlayer, currentPlayer };
+export {
+  renderPlayerBoards,
+  addListenersToCells,
+  humanPlayer,
+  computerPlayer,
+  currentPlayer,
+};
