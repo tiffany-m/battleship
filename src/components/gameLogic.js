@@ -10,6 +10,7 @@ let humanPlayer = new Player(false);
 let computerPlayer = new Player(true);
 let currentPlayer = humanPlayer;
 let computerPicks = [];
+let isGameOver = false;
 
 function renderPlayerBoards(player, playerBoard) {
   for (let i = 0; i < player.gameBoardInstance.board.length; i++) {
@@ -51,16 +52,15 @@ function updateCell(cell, boardCell, player) {
     if (player.allShipsSunk === 5) {
       endOfGameAlert.classList.replace("hidden", "visible");
 
-      humanGameBoard.classList.add("boardNotActive");
       computerGameBoard.classList.add("boardNotActive");
-
-      console.log("Added .boardNotActive class to both boards"); // Add log
 
       if (player.isComputer) {
         alert(`Computer loses, all ships sunk`);
       } else {
         alert(`Human loses, all ships sunk`);
       }
+
+      isGameOver = true;
     }
   }
 }
@@ -88,13 +88,17 @@ function handleComputerAttack() {
 
 
 function nextTurn() {
+  if (isGameOver) {
+    return; // Exit the function if the game is over
+  }
+
   if (currentPlayer === humanPlayer) {
     currentPlayer = computerPlayer;
-    computerGameBoard.classList.add("nextTurn");
+    computerGameBoard.classList.add("boardNotActive");
     handleComputerAttack();
   } else {
     currentPlayer = humanPlayer;
-    computerGameBoard.classList.remove("nextTurn");
+    computerGameBoard.classList.remove("boardNotActive");
   }
 }
 
