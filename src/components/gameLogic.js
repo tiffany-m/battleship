@@ -50,7 +50,12 @@ function updateCell(cell, boardCell, player) {
     player.allShipsSunk++;
     if (player.allShipsSunk === 5) {
       endOfGameAlert.classList.replace("hidden", "visible");
-      alert(`${player.name} loses, all ships sunk`);
+
+      if(player.isComputer) {
+        alert(`Computer loses, all ships sunk`);
+      } else {
+        alert(`Human loses, all ships sunk`);
+      }
     }
   }
 }
