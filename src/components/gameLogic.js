@@ -51,7 +51,12 @@ function updateCell(cell, boardCell, player) {
     if (player.allShipsSunk === 5) {
       endOfGameAlert.classList.replace("hidden", "visible");
 
-      if(player.isComputer) {
+      humanGameBoard.classList.add("boardNotActive");
+      computerGameBoard.classList.add("boardNotActive");
+
+      console.log("Added .boardNotActive class to both boards"); // Add log
+
+      if (player.isComputer) {
         alert(`Computer loses, all ships sunk`);
       } else {
         alert(`Human loses, all ships sunk`);
