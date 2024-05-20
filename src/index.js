@@ -4,12 +4,13 @@ import {
   addListenersToCells,
   humanPlayer,
   computerPlayer,
-  pickShipPlacement,
+  randomShipPlacement,
 } from "./components/gameLogic.js";
 import {
   humanGameBoard,
   computerGameBoard,
   chooseShipPlacementBtn,
+  startGameBtn
 } from "./components/dom.js";
 import "./styles.css";
 
@@ -24,7 +25,22 @@ let cruiserComp = new Ship("Cruiser", 3);
 let submarineComp = new Ship("Submarine", 3);
 let patrolBoatComp = new Ship("Patrol Boat", 2);
 
-pickShipPlacement(
+function pickNewShipPlacement(){
+    humanPlayer.gameBoardInstance.reset();
+
+    randomShipPlacement(
+      humanPlayer,
+      carrierHuman,
+      battleshipHuman,
+      cruiserHuman,
+      submarineHuman,
+      patrolBoatHuman,
+    );
+
+    renderPlayerBoards(humanPlayer, humanGameBoard);
+}
+
+randomShipPlacement(
   humanPlayer,
   carrierHuman,
   battleshipHuman,
@@ -33,7 +49,7 @@ pickShipPlacement(
   patrolBoatHuman,
 );
 
-pickShipPlacement(
+randomShipPlacement(
   computerPlayer,
   carrierComp,
   battleshipComp,
@@ -46,17 +62,9 @@ renderPlayerBoards(humanPlayer, humanGameBoard);
 renderPlayerBoards(computerPlayer, computerGameBoard);
 addListenersToCells(computerPlayer, computerGameBoard);
 
-chooseShipPlacementBtn.addEventListener("click", () => {
-  humanPlayer.gameBoardInstance.reset();
+chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
 
-  pickShipPlacement(
-    humanPlayer,
-    carrierHuman,
-    battleshipHuman,
-    cruiserHuman,
-    submarineHuman,
-    patrolBoatHuman,
-  );
-
-  renderPlayerBoards(humanPlayer, humanGameBoard);
-});
+startGameBtn.addEventListener("click", () => {
+  computerGameBoard.classList.remove("boardNotActive")
+  chooseShipPlacementBtn.removeEventListener("click", pickNewShipPlacement);
+})

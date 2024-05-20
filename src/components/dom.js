@@ -4,6 +4,7 @@ let closePopUpBtn = document.getElementById("close-popup-btn");
 let sunkAlert = document.getElementById("sunk-alert");
 let endOfGameAlert = document.getElementById("end-of-game-alert");
 let chooseShipPlacementBtn = document.getElementById("choose-ship-placement-btn");
+let startGameBtn = document.getElementById('start-game-btn');
 
 export {
   humanGameBoard,
@@ -12,4 +13,5 @@ export {
   sunkAlert,
   endOfGameAlert,
   chooseShipPlacementBtn,
+  startGameBtn
 };

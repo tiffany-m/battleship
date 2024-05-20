@@ -125,7 +125,7 @@ function addListenersToCells(player, board) {
   });
 }
 
-function pickShipPlacement(player, a, b, c, d, e) {
+function randomShipPlacement(player, a, b, c, d, e) {
   player.gameBoardInstance.randomlyPlaceShip(a);
   player.gameBoardInstance.randomlyPlaceShip(b);
   player.gameBoardInstance.randomlyPlaceShip(c);
@@ -134,7 +134,7 @@ function pickShipPlacement(player, a, b, c, d, e) {
 }
 
 export {
-  pickShipPlacement,
+  randomShipPlacement,
   renderPlayerBoards,
   addListenersToCells,
   humanPlayer,
