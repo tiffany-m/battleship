@@ -1,14 +1,31 @@
 import { Player } from "./player.js";
 import {
   computerGameBoard,
-  sunkAlert,
-  closePopUpBtn,
+  chooseShipPlacementBtn
 } from "./dom.js";
 let humanPlayer = new Player(false);
 let computerPlayer = new Player(true);
 let currentPlayer = humanPlayer;
 let computerPicks = [];
 let isGameOver = false;
+
+// function gameReset() {
+//   chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
+// }
+
+function restartGame(player) {
+      let restartGameBtn = document.createElement("button");
+      restartGameBtn.innerHTML = "Restart Game";
+      // restartGameBtn.addEventListener("click", gameReset);
+      if(player.isComputer) {
+        modal.innerHTML = `Computer has lost.`;
+      } else {
+        modal.innerHTML = `Human has lost.`;
+      }    
+
+      modal.appendChild(restartGameBtn);
+      modal.showModal();
+}
 
 function renderPlayerBoards(player, playerBoard) {
   playerBoard.innerHTML = "";
@@ -32,10 +49,6 @@ function renderPlayerBoards(player, playerBoard) {
   }
 }
 
-closePopUpBtn.addEventListener("click", () => {
-  sunkAlert.classList.replace("visible", "hidden");
-});
-
 function updateCell(cell, boardCell, player) {
   if (cell) {
     if (boardCell.hit) {
@@ -47,18 +60,11 @@ function updateCell(cell, boardCell, player) {
   }
 
   if (boardCell.ship && boardCell.ship.sunk) {
-    sunkAlert.classList.replace("hidden", "visible");
     player.allShipsSunk++;
     if (player.allShipsSunk === 5) {
       computerGameBoard.classList.add("board-not-active");
 
-      if (player.isComputer) {
-        modal.showModal();
-        modal.innerHTML = "Computer has lost."
-      } else {
-        modal.showModal();
-        modal.innerHTML = "Human has lost."
-      }
+      restartGame(player)
 
       isGameOver = true;
     }
