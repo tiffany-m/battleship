@@ -1,6 +1,5 @@
 import { Player } from "./player.js";
 import {
-  humanGameBoard,
   computerGameBoard,
   sunkAlert,
   closePopUpBtn,
@@ -13,6 +12,7 @@ let computerPicks = [];
 let isGameOver = false;
 
 function renderPlayerBoards(player, playerBoard) {
+  playerBoard.innerHTML = "";
   for (let i = 0; i < player.gameBoardInstance.board.length; i++) {
     let rowWrapper = document.createElement("div");
     rowWrapper.classList.add("row");
@@ -125,7 +125,16 @@ function addListenersToCells(player, board) {
   });
 }
 
+function pickShipPlacement(player, a, b, c, d, e) {
+  player.gameBoardInstance.randomlyPlaceShip(a);
+  player.gameBoardInstance.randomlyPlaceShip(b);
+  player.gameBoardInstance.randomlyPlaceShip(c);
+  player.gameBoardInstance.randomlyPlaceShip(d);
+  player.gameBoardInstance.randomlyPlaceShip(e);
+}
+
 export {
+  pickShipPlacement,
   renderPlayerBoards,
   addListenersToCells,
   humanPlayer,
