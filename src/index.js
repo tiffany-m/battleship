@@ -21,17 +21,16 @@ let cruiserComp = new Ship("Cruiser", 3);
 let submarineComp = new Ship("Submarine", 3);
 let patrolBoatComp = new Ship("Patrol Boat", 2);
 
-// temp placement of ships
-humanPlayer.gameBoardInstance.placeShip(carrierHuman, 1, 1, "horizontal");
-humanPlayer.gameBoardInstance.placeShip(battleshipHuman, 3, 5, "vertical");
-humanPlayer.gameBoardInstance.placeShip(cruiserHuman, 8, 1, "horizontal");
-humanPlayer.gameBoardInstance.placeShip(submarineHuman, 2, 8, "vertical");
-humanPlayer.gameBoardInstance.placeShip(patrolBoatHuman, 9, 7, "horizontal");
-computerPlayer.gameBoardInstance.placeShip(carrierComp, 1, 1, "horizontal");
-computerPlayer.gameBoardInstance.placeShip(battleshipComp, 3, 5, "vertical");
-computerPlayer.gameBoardInstance.placeShip(cruiserComp, 8, 1, "horizontal");
-computerPlayer.gameBoardInstance.placeShip(submarineComp, 2, 8, "vertical");
-computerPlayer.gameBoardInstance.placeShip(patrolBoatComp, 9, 7, "horizontal");
+humanPlayer.gameBoardInstance.randomlyPlaceShip(carrierHuman);
+humanPlayer.gameBoardInstance.randomlyPlaceShip(battleshipHuman);
+humanPlayer.gameBoardInstance.randomlyPlaceShip(cruiserHuman);
+humanPlayer.gameBoardInstance.randomlyPlaceShip(submarineHuman);
+humanPlayer.gameBoardInstance.randomlyPlaceShip(patrolBoatHuman);
+computerPlayer.gameBoardInstance.randomlyPlaceShip(carrierComp);
+computerPlayer.gameBoardInstance.randomlyPlaceShip(battleshipComp);
+computerPlayer.gameBoardInstance.randomlyPlaceShip(cruiserComp);
+computerPlayer.gameBoardInstance.randomlyPlaceShip(submarineComp);
+computerPlayer.gameBoardInstance.randomlyPlaceShip(patrolBoatComp);
 
 renderPlayerBoards(humanPlayer, humanGameBoard);
 renderPlayerBoards(computerPlayer, computerGameBoard);

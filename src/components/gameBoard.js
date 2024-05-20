@@ -73,6 +73,17 @@ class GameBoard {
     return true;
   }
 
+  randomlyPlaceShip(ship) {
+  let result;
+  do {
+    let row = Math.floor(Math.random() * 10);
+    let col = Math.floor(Math.random() * 10);
+    let orientation = Math.random() < 0.5 ? "horizontal" : "vertical";
+
+    result = this.placeShip(ship, row, col, orientation);
+  } while (result.success === false);
+}
+
   receiveAttack(row, col) {
     let cell = this.board[row][col];
     if (cell.ship != null) {
