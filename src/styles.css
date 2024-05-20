@@ -40,7 +40,7 @@
   width: 100%;
 }
 
-#sunk-alert, #end-of-game {
+#sunk-alert {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -61,4 +61,10 @@
 
 .board-not-active {
   pointer-events: none;
+}
+
+/* Modal ------------------------------ */
+#modal::backdrop {
+    background-image: linear-gradient(to right, #8360c3, #0085e2, #00a0dc, #00b3bb, #2ebf91);
+    opacity: .5;
 }

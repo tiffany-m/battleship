@@ -3,7 +3,6 @@ import {
   computerGameBoard,
   sunkAlert,
   closePopUpBtn,
-  endOfGameAlert,
 } from "./dom.js";
 let humanPlayer = new Player(false);
 let computerPlayer = new Player(true);
@@ -21,9 +20,10 @@ function renderPlayerBoards(player, playerBoard) {
       cellElement.classList.add("cell");
       cellElement.dataset.row = i;
       cellElement.dataset.col = j;
-
+// FIX LATER SO SHIPS ON COMPUTER BOARD DONT SHOW IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
       if (player.gameBoardInstance.board[i][j].ship) {
-        if (player.isComputer === false) cellElement.classList.add("hasShip");
+        // if (player.isComputer === false) cellElement.classList.add("hasShip");
+        cellElement.classList.add("hasShip");
       }
 
       rowWrapper.appendChild(cellElement);
@@ -50,14 +50,14 @@ function updateCell(cell, boardCell, player) {
     sunkAlert.classList.replace("hidden", "visible");
     player.allShipsSunk++;
     if (player.allShipsSunk === 5) {
-      endOfGameAlert.classList.replace("hidden", "visible");
-
       computerGameBoard.classList.add("board-not-active");
 
       if (player.isComputer) {
-        alert(`Computer loses, all ships sunk`);
+        modal.showModal();
+        modal.innerHTML = "Computer has lost."
       } else {
-        alert(`Human loses, all ships sunk`);
+        modal.showModal();
+        modal.innerHTML = "Human has lost."
       }
 
       isGameOver = true;
