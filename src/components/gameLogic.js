@@ -1,22 +1,34 @@
 import { Player } from "./player.js";
 import {
+  humanGameBoard,
   computerGameBoard,
-  chooseShipPlacementBtn
+  chooseShipPlacementBtn,
 } from "./dom.js";
 let humanPlayer = new Player(false);
 let computerPlayer = new Player(true);
 let currentPlayer = humanPlayer;
 let computerPicks = [];
 let isGameOver = false;
+import { pickNewShipPlacement } from "../index.js"
 
-// function gameReset() {
-//   chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
-// }
+function gameReset() {
+  modal.close();
+  humanPlayer.gameBoardInstance.reset();
+  computerPlayer.gameBoardInstance.reset();
+  pickNewShipPlacement(humanPlayer, humanGameBoard);
+  pickNewShipPlacement(computerPlayer, computerGameBoard);
+  chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
+  renderPlayerBoards(humanPlayer, humanGameBoard);
+  renderPlayerBoards(computerPlayer, computerGameBoard);
+  addListenersToCells(computerPlayer, computerGameBoard);
+}
 
 function restartGame(player) {
       let restartGameBtn = document.createElement("button");
+
+      modal.showModal()      
       restartGameBtn.innerHTML = "Restart Game";
-      // restartGameBtn.addEventListener("click", gameReset);
+      restartGameBtn.addEventListener("click", gameReset);
       if(player.isComputer) {
         modal.innerHTML = `Computer has lost.`;
       } else {
@@ -24,7 +36,6 @@ function restartGame(player) {
       }    
 
       modal.appendChild(restartGameBtn);
-      modal.showModal();
 }
 
 function renderPlayerBoards(player, playerBoard) {

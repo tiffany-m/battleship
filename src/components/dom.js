@@ -11,5 +11,5 @@ export {
   closePopUpBtn,
   sunkAlert,
   chooseShipPlacementBtn,
-  startGameBtn
+  startGameBtn,
 };

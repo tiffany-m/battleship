@@ -25,11 +25,11 @@ let cruiserComp = new Ship("Cruiser", 3);
 let submarineComp = new Ship("Submarine", 3);
 let patrolBoatComp = new Ship("Patrol Boat", 2);
 
-function pickNewShipPlacement(){
-    humanPlayer.gameBoardInstance.reset();
+function pickNewShipPlacement(player, gameBoard){
+    player.gameBoardInstance.reset();
 
     randomShipPlacement(
-      humanPlayer,
+      player,
       carrierHuman,
       battleshipHuman,
       cruiserHuman,
@@ -37,7 +37,7 @@ function pickNewShipPlacement(){
       patrolBoatHuman,
     );
 
-    renderPlayerBoards(humanPlayer, humanGameBoard);
+    renderPlayerBoards(player, gameBoard);
 }
 
 randomShipPlacement(
@@ -62,9 +62,13 @@ renderPlayerBoards(humanPlayer, humanGameBoard);
 renderPlayerBoards(computerPlayer, computerGameBoard);
 addListenersToCells(computerPlayer, computerGameBoard);
 
-chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
+chooseShipPlacementBtn.addEventListener("click", () => {
+  pickNewShipPlacement(humanPlayer, humanGameBoard)
+});
 
 startGameBtn.addEventListener("click", () => {
   computerGameBoard.classList.remove("board-not-active")
   chooseShipPlacementBtn.removeEventListener("click", pickNewShipPlacement);
 })
+
+export { pickNewShipPlacement }
