@@ -52,7 +52,7 @@ function updateCell(cell, boardCell, player) {
     if (player.allShipsSunk === 5) {
       endOfGameAlert.classList.replace("hidden", "visible");
 
-      computerGameBoard.classList.add("boardNotActive");
+      computerGameBoard.classList.add("board-not-active");
 
       if (player.isComputer) {
         alert(`Computer loses, all ships sunk`);
@@ -94,11 +94,11 @@ function nextTurn() {
 
   if (currentPlayer === humanPlayer) {
     currentPlayer = computerPlayer;
-    computerGameBoard.classList.add("boardNotActive");
+    computerGameBoard.classList.add("board-not-active");
     handleComputerAttack();
   } else {
     currentPlayer = humanPlayer;
-    computerGameBoard.classList.remove("boardNotActive");
+    computerGameBoard.classList.remove("board-not-active");
   }
 }
 

@@ -65,6 +65,6 @@ addListenersToCells(computerPlayer, computerGameBoard);
 chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
 
 startGameBtn.addEventListener("click", () => {
-  computerGameBoard.classList.remove("boardNotActive")
+  computerGameBoard.classList.remove("board-not-active")
   chooseShipPlacementBtn.removeEventListener("click", pickNewShipPlacement);
 })

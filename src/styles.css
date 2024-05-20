@@ -59,6 +59,6 @@
   display: block;
 }
 
-.boardNotActive {
+.board-not-active {
   pointer-events: none;
 }
