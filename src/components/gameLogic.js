@@ -4,6 +4,8 @@ import {
   humanGameBoard,
   computerGameBoard,
   chooseShipPlacementBtn,
+  humanShipsSunkCount,
+  computerShipsSunkCount
 } from "./dom.js";
 import { pickNewShipPlacement } from "../index.js"
 let humanPlayer = new Player(false);
@@ -35,8 +37,11 @@ function gameReset() {
   pickNewShipPlacement(computerPlayer, computerGameBoard);
   chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
   renderPlayerBoards(humanPlayer, humanGameBoard);
+  addListenersToCells(humanPlayer, humanGameBoard);
   renderPlayerBoards(computerPlayer, computerGameBoard);
   addListenersToCells(computerPlayer, computerGameBoard);
+  humanShipsSunkCount.innerHTML = 0
+  computerShipsSunkCount.innerHTML = 0
 }
 
 function restartGame(player) {
@@ -88,6 +93,13 @@ function updateCell(cell, boardCell, player) {
 
   if (boardCell.ship && boardCell.ship.sunk) {
     player.allShipsSunk++;
+
+    if(player.isComputer) {
+      computerShipsSunkCount.innerHTML = `${player.allShipsSunk}`
+    } else {
+      humanShipsSunkCount.innerHTML = `${player.allShipsSunk}`;
+    }
+    
     if (player.allShipsSunk === 5) {
       computerGameBoard.classList.add("board-not-active");
 

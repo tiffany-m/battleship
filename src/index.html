@@ -12,10 +12,6 @@
     <title>Battleship Game</title>
   </head>
   <body>
-    <div id="sunk-alert" class="hidden">
-      Ship has been sunk!
-      <button id="close-popup-btn">OK</button>
-    </div>
     <!-- End Game Modal ------------------------------------------------------------------------------------------------------- -->
     <dialog id="modal"></dialog>
     <!-- Main Game ------------------------------------------------------------------------------------------------------------ -->
@@ -24,10 +20,12 @@
       <div id="boards-container">
         <div id="human-side">
           Human
+          Ships Sunk <span class="human-ship-sunk-count">0</span>
           <div id="human-game-board" class="board-not-active"></div>
         </div>
         <div id="computer-side">
           Computer
+          Ships Sunk <span class="computer-ship-sunk-count">0</span>
           <div id="computer-game-board" class="board-not-active"></div>
         </div>
       </div>
