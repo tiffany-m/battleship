@@ -32,14 +32,14 @@ class GameBoard {
       if (col + ship.length > this.cols) {
         return {
           success: false,
-          message: `${ship.name} placement is out of bounds. Horizontal orientation would extend beyond game board's edge.`,
+          message: `${ship.name} placement is out of bounds. Horizontal orientation would extend beyond game board's edge.`
         };
       }
     } else {
       if (row + ship.length > this.rows) {
         return {
           success: false,
-          message: `${ship.name} placement is out of bounds. Vertical orientation would extend beyond game board's edge.`,
+          message: `${ship.name} placement is out of bounds. Vertical orientation would extend beyond game board's edge.`
         };
       }
     }
@@ -49,7 +49,7 @@ class GameBoard {
         if (!this.board[row][col + i].empty) {
           return {
             success: false,
-            message: `Cannot place ${ship.name}: space already occupied by ${this.board[row][col + i].ship.name}.`,
+            message: `Cannot place ${ship.name}: space already occupied by ${this.board[row][col + i].ship.name}.`
           };
         }
       }
@@ -58,7 +58,7 @@ class GameBoard {
         if (!this.board[row + i][col].empty) {
           return {
             success: false,
-            message: `Cannot place ${ship.name}: space already occupied by ${this.board[row + i][col].ship.name}.`,
+            message: `Cannot place ${ship.name}: space already occupied by ${this.board[row + i][col].ship.name}.`
           };
         }
       }

@@ -1,9 +1,9 @@
 class Ship {
   constructor(name, length) {
-    (this.name = name),
-      (this.length = length),
-      (this.numHit = 0),
-      (this.sunk = false);
+    this.name = name;
+    this.length = length;
+    this.numHit = 0;
+    this.sunk = false;
   }
 
   hit() {
@@ -11,7 +11,7 @@ class Ship {
 
     if (this.sunk === true) {
       return {
-        message: `${this.name} has been hit the max number of times already and has sunk.`,
+        message: `${this.name} has been hit the max number of times already and has sunk.`
       };
     }
 
