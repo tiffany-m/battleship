@@ -43,7 +43,7 @@ class GameBoard {
         };
       }
     }
-    // Checks for existing ships.
+    // Checks for existing ships in placement area.
     if (orientation === "horizontal") {
       for (let i = 0; i < ship.length; i++) {
         if (!this.board[row][col + i].empty) {
@@ -63,7 +63,7 @@ class GameBoard {
         }
       }
     }
-    // Places ships.
+    // Places the ship on the board.
     for (let i = 0; i < ship.length; i++) {
       if (orientation === "horizontal") {
         this.board[row][col + i].empty = false;
