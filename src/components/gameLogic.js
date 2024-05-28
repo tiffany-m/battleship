@@ -33,15 +33,19 @@ function gameReset() {
   modal.close();
   humanPlayer.gameBoardInstance.reset();
   computerPlayer.gameBoardInstance.reset();
-  pickNewShipPlacement(humanPlayer, humanGameBoard);
-  pickNewShipPlacement(computerPlayer, computerGameBoard);
   chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
+
+  pickNewShipPlacement(humanPlayer, humanGameBoard); 
   renderPlayerBoards(humanPlayer, humanGameBoard);
   addListenersToCells(humanPlayer, humanGameBoard);
+  pickNewShipPlacement(computerPlayer, computerGameBoard);
   renderPlayerBoards(computerPlayer, computerGameBoard);
   addListenersToCells(computerPlayer, computerGameBoard);
+  
   humanShipsSunkCount.innerHTML = 0
   computerShipsSunkCount.innerHTML = 0
+  isGameOver = false;
+  currentPlayer = humanPlayer;
 }
 
 function restartGame(player) {

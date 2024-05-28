@@ -5,48 +5,39 @@ import {
   computerPlayer,
   randomShipPlacement,
   humanShipsArr,
-  computerShipsArr
+  computerShipsArr,
 } from "./components/gameLogic.js";
 import {
   humanGameBoard,
   computerGameBoard,
   chooseShipPlacementBtn,
-  startGameBtn
+  startGameBtn,
 } from "./components/dom.js";
 import "./styles.css";
 
-function pickNewShipPlacement(player, gameBoard){
-    player.gameBoardInstance.reset();
+function pickNewShipPlacement(player, gameBoard) {
+  player.gameBoardInstance.reset();
 
-    randomShipPlacement(
-      player,
-      ...humanShipsArr
-    );
+  randomShipPlacement(player, ...humanShipsArr);
 
-    renderPlayerBoards(player, gameBoard);
+  renderPlayerBoards(player, gameBoard);
 }
 
-randomShipPlacement(
-  humanPlayer,
-  ...humanShipsArr
-);
+randomShipPlacement(humanPlayer, ...humanShipsArr);
 
-randomShipPlacement(
-  computerPlayer,
-  ...computerShipsArr
-);
+randomShipPlacement(computerPlayer, ...computerShipsArr);
 
 renderPlayerBoards(humanPlayer, humanGameBoard);
 renderPlayerBoards(computerPlayer, computerGameBoard);
 addListenersToCells(computerPlayer, computerGameBoard);
 
 chooseShipPlacementBtn.addEventListener("click", () => {
-  pickNewShipPlacement(humanPlayer, humanGameBoard)
+  pickNewShipPlacement(humanPlayer, humanGameBoard);
 });
 
 startGameBtn.addEventListener("click", () => {
-  computerGameBoard.classList.remove("board-not-active")
+  computerGameBoard.classList.remove("board-not-active");
   chooseShipPlacementBtn.removeEventListener("click", pickNewShipPlacement);
-})
+});
 
-export { pickNewShipPlacement }
+export { pickNewShipPlacement };
