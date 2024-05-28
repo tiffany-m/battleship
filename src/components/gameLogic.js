@@ -34,16 +34,16 @@ function gameReset() {
   humanPlayer.gameBoardInstance.reset();
   computerPlayer.gameBoardInstance.reset();
   chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
-
-  pickNewShipPlacement(humanPlayer, humanGameBoard); 
+  pickNewShipPlacement(humanPlayer, humanGameBoard);
   renderPlayerBoards(humanPlayer, humanGameBoard);
   addListenersToCells(humanPlayer, humanGameBoard);
   pickNewShipPlacement(computerPlayer, computerGameBoard);
   renderPlayerBoards(computerPlayer, computerGameBoard);
   addListenersToCells(computerPlayer, computerGameBoard);
-  
-  humanShipsSunkCount.innerHTML = 0
-  computerShipsSunkCount.innerHTML = 0
+  humanPlayer.allShipsSunk = 0;
+  computerPlayer.allShipsSunk = 0;
+  humanShipsSunkCount.innerHTML = 0;
+  computerShipsSunkCount.innerHTML = 0;
   isGameOver = false;
   currentPlayer = humanPlayer;
 }
