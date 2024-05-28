@@ -21,12 +21,8 @@ class Ship {
   }
 
   isSunk() {
-    if (this.numHit === this.length) {
-      this.sunk = true;
-      return this.sunk;
-    } else {
-      return this.sunk;
-    }
+    this.sunk = this.sunk || this.numHit === this.length;
+    return this.sunk;
   }
 }
 
