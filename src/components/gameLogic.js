@@ -4,6 +4,7 @@ import {
   humanGameBoard,
   computerGameBoard,
   chooseShipPlacementBtn,
+  restartGameBtn,
   humanShipsSunkCount,
   computerShipsSunkCount
 } from "./dom.js";
@@ -26,6 +27,7 @@ let cruiserComp = new Ship("Cruiser", 3);
 let submarineComp = new Ship("Submarine", 3);
 let patrolBoatComp = new Ship("Patrol Boat", 2);
 
+restartGameBtn.addEventListener("click", gameReset);
 humanShipsArr.push(carrierHuman, battleshipHuman, cruiserHuman, submarineHuman, patrolBoatHuman)
 computerShipsArr.push(carrierComp, battleshipComp, cruiserComp, submarineComp, patrolBoatComp)
 
@@ -52,12 +54,9 @@ function gameReset() {
 }
 
 function restartGame(player) {
-      let restartGameBtn = document.createElement("button");
-      restartGameBtn.innerHTML = "Restart Game";
-      restartGameBtn.addEventListener("click", gameReset);
-      modal.innerHTML = player.isComputer ? `Computer has lost.` : `Human has lost.`;
-      modal.appendChild(restartGameBtn);
-      modal.showModal();
+  modal.innerHTML = player.isComputer ? `Computer has lost.` : `Human has lost.`;
+  modal.appendChild(restartGameBtn);
+  modal.showModal();
 }
 
 function renderPlayerBoards(player, playerBoard) {
