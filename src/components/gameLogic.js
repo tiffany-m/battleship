@@ -30,34 +30,34 @@ humanShipsArr.push(carrierHuman, battleshipHuman, cruiserHuman, submarineHuman, 
 computerShipsArr.push(carrierComp, battleshipComp, cruiserComp, submarineComp, patrolBoatComp)
 
 function gameReset() {
-  modal.close();
+  // Human Reset
   humanPlayer.gameBoardInstance.reset();
-  computerPlayer.gameBoardInstance.reset();
-  chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
   pickNewShipPlacement(humanPlayer, humanGameBoard);
   renderPlayerBoards(humanPlayer, humanGameBoard);
   addListenersToCells(humanPlayer, humanGameBoard);
+  humanPlayer.allShipsSunk = 0;
+  humanShipsSunkCount.innerHTML = 0;
+  // Computer Reset
+  computerPlayer.gameBoardInstance.reset();
   pickNewShipPlacement(computerPlayer, computerGameBoard);
   renderPlayerBoards(computerPlayer, computerGameBoard);
   addListenersToCells(computerPlayer, computerGameBoard);
-  humanPlayer.allShipsSunk = 0;
   computerPlayer.allShipsSunk = 0;
-  humanShipsSunkCount.innerHTML = 0;
   computerShipsSunkCount.innerHTML = 0;
+
+  chooseShipPlacementBtn.addEventListener("click", pickNewShipPlacement);
   isGameOver = false;
   currentPlayer = humanPlayer;
+  modal.close();
 }
 
 function restartGame(player) {
       let restartGameBtn = document.createElement("button");
-
-      modal.showModal()      
       restartGameBtn.innerHTML = "Restart Game";
       restartGameBtn.addEventListener("click", gameReset);
-
       modal.innerHTML = player.isComputer ? `Computer has lost.` : `Human has lost.`;
-
       modal.appendChild(restartGameBtn);
+      modal.showModal();
 }
 
 function renderPlayerBoards(player, playerBoard) {
@@ -70,15 +70,12 @@ function renderPlayerBoards(player, playerBoard) {
       cellElement.classList.add("cell");
       cellElement.dataset.row = i;
       cellElement.dataset.col = j;
-// FIX LATER SO SHIPS ON COMPUTER BOARD DONT SHOW IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
       if (player.gameBoardInstance.board[i][j].ship) {
         // if (player.isComputer === false) cellElement.classList.add("hasShip");
         cellElement.classList.add("hasShip");
       }
-      
-      // REPLACE WITH
+// REPLACE ABOVE WITH |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
       // player.gameBoardInstance.board[i][j].ship && player.isComputer === false && cellElement.classList.add("hasShip");
-
       rowWrapper.appendChild(cellElement);
     }
     playerBoard.appendChild(rowWrapper);
@@ -93,17 +90,14 @@ function updateCell(cell, boardCell, player) {
 
   if (boardCell.ship && boardCell.ship.sunk) {
     player.allShipsSunk++;
-
     player.isComputer 
       ? computerShipsSunkCount.innerHTML = `${player.allShipsSunk}` 
       : humanShipsSunkCount.innerHTML = `${player.allShipsSunk}`;
     
     if (player.allShipsSunk === 5) {
       computerGameBoard.classList.add("board-not-active");
-
-      restartGame(player)
-
       isGameOver = true;
+      restartGame(player);
     }
   }
 }
@@ -151,7 +145,6 @@ function handleClick(player) {
     const boardCell = player.gameBoardInstance.board[row][col];
 
     player.gameBoardInstance.receiveAttack(row, col);
-
     updateCell(cell, boardCell, player)
     nextTurn();
   };
