@@ -54,11 +54,8 @@ function restartGame(player) {
       modal.showModal()      
       restartGameBtn.innerHTML = "Restart Game";
       restartGameBtn.addEventListener("click", gameReset);
-      if(player.isComputer) {
-        modal.innerHTML = `Computer has lost.`;
-      } else {
-        modal.innerHTML = `Human has lost.`;
-      }    
+
+      modal.innerHTML = player.isComputer ? `Computer has lost.` : `Human has lost.`;
 
       modal.appendChild(restartGameBtn);
 }
@@ -78,6 +75,9 @@ function renderPlayerBoards(player, playerBoard) {
         // if (player.isComputer === false) cellElement.classList.add("hasShip");
         cellElement.classList.add("hasShip");
       }
+      
+      // REPLACE WITH
+      // player.gameBoardInstance.board[i][j].ship && player.isComputer === false && cellElement.classList.add("hasShip");
 
       rowWrapper.appendChild(cellElement);
     }
@@ -87,22 +87,16 @@ function renderPlayerBoards(player, playerBoard) {
 
 function updateCell(cell, boardCell, player) {
   if (cell) {
-    if (boardCell.hit) {
-      cell.innerText = "X";
-      cell.classList.add("hit");
-    } else {
-      cell.classList.add("miss");
+    cell.innerText = boardCell.hit ? "X" : "";
+    boardCell.hit ? cell.classList.add("hit") : cell.classList.add("miss")
     }
-  }
 
   if (boardCell.ship && boardCell.ship.sunk) {
     player.allShipsSunk++;
 
-    if(player.isComputer) {
-      computerShipsSunkCount.innerHTML = `${player.allShipsSunk}`
-    } else {
-      humanShipsSunkCount.innerHTML = `${player.allShipsSunk}`;
-    }
+    player.isComputer 
+      ? computerShipsSunkCount.innerHTML = `${player.allShipsSunk}` 
+      : humanShipsSunkCount.innerHTML = `${player.allShipsSunk}`;
     
     if (player.allShipsSunk === 5) {
       computerGameBoard.classList.add("board-not-active");
@@ -137,9 +131,7 @@ function handleComputerAttack() {
 
 
 function nextTurn() {
-  if (isGameOver) {
-    return; // Exit the function if the game is over
-  }
+  if (isGameOver) return;
 
   if (currentPlayer === humanPlayer) {
     currentPlayer = computerPlayer;
