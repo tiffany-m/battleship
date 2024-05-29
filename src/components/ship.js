@@ -11,7 +11,7 @@ class Ship {
 
     if (this.sunk === true) {
       return {
-        message: `${this.name} has been hit the max number of times already and has sunk.`
+        message: `${this.name} has been hit the max number of times already and has sunk.`,
       };
     }
 
@@ -23,6 +23,11 @@ class Ship {
   isSunk() {
     this.sunk = this.sunk || this.numHit === this.length;
     return this.sunk;
+  }
+
+  reset() {
+    this.numHit = 0;
+    this.sunk = false;
   }
 }
 

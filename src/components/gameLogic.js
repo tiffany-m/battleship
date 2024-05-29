@@ -34,6 +34,7 @@ computerShipsArr.push(carrierComp, battleshipComp, cruiserComp, submarineComp, p
 function gameReset() {
   // Human Reset
   humanPlayer.gameBoardInstance.reset();
+  humanShipsArr.forEach((ship) => ship.reset());
   pickNewShipPlacement(humanPlayer, humanGameBoard);
   renderPlayerBoards(humanPlayer, humanGameBoard);
   addListenersToCells(humanPlayer, humanGameBoard);
@@ -41,6 +42,7 @@ function gameReset() {
   humanShipsSunkCount.innerHTML = 0;
   // Computer Reset
   computerPlayer.gameBoardInstance.reset();
+  computerShipsArr.forEach((ship) => ship.reset());
   pickNewShipPlacement(computerPlayer, computerGameBoard);
   renderPlayerBoards(computerPlayer, computerGameBoard);
   addListenersToCells(computerPlayer, computerGameBoard);
