@@ -6,7 +6,8 @@ import {
   chooseShipPlacementBtn,
   restartGameBtn,
   humanShipsSunkCount,
-  computerShipsSunkCount
+  computerShipsSunkCount,
+  winnerText
 } from "./dom.js";
 import { pickNewShipPlacement } from "../index.js"
 let humanPlayer = new Player(false);
@@ -56,8 +57,8 @@ function gameReset() {
 }
 
 function restartGame(player) {
-  modal.innerHTML = player.isComputer ? `Computer has lost.` : `Human has lost.`;
-  modal.appendChild(restartGameBtn);
+  winnerText.innerHTML = player.isComputer ? `Human has WON!` : `Computer has WON!`;
+  // modal.appendChild(restartGameBtn);
   modal.showModal();
 }
 
@@ -85,7 +86,7 @@ function renderPlayerBoards(player, playerBoard) {
 
 function updateCell(cell, boardCell, player) {
   if (cell) {
-    cell.innerText = boardCell.hit ? "X" : "";
+    cell.innerText = "X";
     boardCell.hit ? cell.classList.add("hit") : cell.classList.add("miss")
     }
 
