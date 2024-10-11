@@ -33,6 +33,9 @@ humanShipsArr.push(carrierHuman, battleshipHuman, cruiserHuman, submarineHuman, 
 computerShipsArr.push(carrierComp, battleshipComp, cruiserComp, submarineComp, patrolBoatComp)
 
 function gameReset() {
+  console.log("beginning of game reset func", humanPlayer.allShipsSunk)
+  console.log("beginning of game reset func", computerPlayer.allShipsSunk);
+
   // Human Reset
   humanPlayer.gameBoardInstance.reset();
   humanShipsArr.forEach((ship) => ship.reset());
@@ -54,9 +57,13 @@ function gameReset() {
   isGameOver = false;
   currentPlayer = humanPlayer;
   modal.close();
+  console.log("end of game reset func", humanPlayer.allShipsSunk);
+  console.log("end of game reset func", computerPlayer.allShipsSunk);
 }
 
 function restartGame(player) {
+  console.log("restart window", humanPlayer.allShipsSunk);
+  console.log("restart window", computerPlayer.allShipsSunk);
   winnerText.innerHTML = player.isComputer ? `Human has WON!` : `Computer has WON!`;
   modal.showModal();
 }
@@ -87,6 +94,8 @@ function renderPlayerBoards(player, playerBoard) {
 }
 
 function updateCell(cell, boardCell, player) {
+    console.log("update cell", humanPlayer.allShipsSunk);
+    console.log("update cell", computerPlayer.allShipsSunk);
   if (cell) {
     cell.innerText = "X";
     boardCell.hit ? cell.classList.add("hit") : cell.classList.add("miss")

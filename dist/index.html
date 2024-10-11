@@ -9,27 +9,40 @@
       href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <title>Battleship Game</title>
-  <script defer src="main.js"></script></head>
+  </head>
   <body>
-    <div id="sunk-alert" class="hidden">
-      Ship has been sunk!
-      <button id="close-popup-btn">OK</button>
-    </div>
-    <div id="end-of-game-alert" class="hidden"></div>
-    <div id="battleship-container">
-      Battleship <button id="choose-ship-placement-btn">Choose Ship Placement</button>
-      <div id="boards-container">
-        <div id="human-side">
-          Human
-          <div id="human-game-board" class="boardNotActive"></div>
+    <!-- End Game Modal ------------------------------------------------------------------------------------------------------- -->
+    <dialog id="modal">
+      <div id="modal-container">
+        <div id="winner-text"></div>
+        <div><button id="restart-game-btn" class="btn">Restart Game</button></div>
+      </div>
+    </dialog>
+    <!-- Main Game ------------------------------------------------------------------------------------------------------------ -->
+    <div id="content-container">
+      <div id="logo-container"></div>
+      <div id="btn-container">
+        <button id="choose-ship-placement-btn" class="btn">Choose Ship Placement</button>
+        <button id="start-game-btn" class="btn">Start Game</button>
+      </div>
+      <div id="player-container">
+        <div>
+          <div class="player-text">
+            <span>PLAYER: HUMAN</span>
+            <span>SHIPS SUNK:&nbsp<span class="human-ship-sunk-count">0</span></span>            
+          </div>
+          <div id="human-game-board" class="board-not-active"></div>
         </div>
-        <div id="computer-side">
-          Computer
-          <div id="computer-game-board"></div>
+        <div>
+          <div class="player-text">
+            <span>PLAYER: COMPUTER</span>
+            <span>SHIPS SUNK:&nbsp<span class="computer-ship-sunk-count">0</span></span>
+          </div>
+          <div id="computer-game-board" class="board-not-active"></div>
         </div>
       </div>
-      <div id="buttons"></div>
     </div>
-  </body>
+  <script defer src="main.js"></script></body>
 </html>
