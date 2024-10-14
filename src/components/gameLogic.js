@@ -79,14 +79,14 @@ function renderPlayerBoards(player, playerBoard) {
       cellElement.dataset.row = i;
       cellElement.dataset.col = j;
 // Uncomment for Debugging |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-      if (player.gameBoardInstance.board[i][j].ship) {
-        cellElement.classList.add("hasShip");
-      }
-// Comment for Debugging
       // if (player.gameBoardInstance.board[i][j].ship) {
-      //   if (player.isComputer === false) cellElement.classList.add("hasShip");
-      //   player.gameBoardInstance.board[i][j].ship && player.isComputer === false && cellElement.classList.add("hasShip");
+      //   cellElement.classList.add("hasShip");
       // }
+// Comment for Debugging
+      if (player.gameBoardInstance.board[i][j].ship) {
+        if (player.isComputer === false) cellElement.classList.add("hasShip");
+        player.gameBoardInstance.board[i][j].ship && player.isComputer === false && cellElement.classList.add("hasShip");
+      }
       rowWrapper.appendChild(cellElement);
     }
     playerBoard.appendChild(rowWrapper);
